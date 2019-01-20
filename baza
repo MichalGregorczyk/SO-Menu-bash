@@ -1,0 +1,117 @@
+#!/bin/bash
+exit()
+{
+break
+}
+
+lista()
+{
+clear
+ls
+read -rsp $"Nacisnij dowolny przycisk zeby wrocic do menu"
+echo
+echo
+echo
+clear
+}
+
+dodaj()
+{
+clear
+echo "Podaj nazwe pliku: "
+read nazwapliku
+echo "Podaj model: "
+read Model
+echo "Podaj ilosc rdzeni: "
+read iloscrdzeni
+echo "Podaj ilosc watkow: "
+read watki
+echo "Model: $Model" >> $nazwapliku
+echo "Ilosc rdzeni: $iloscrdzeni" >> $nazwapliku
+echo "Ilosc watkow: $watki" >> $nazwapliku
+echo
+echo "Plik utworzony!"
+echo
+echo
+echo
+read -rsp $"Nacisnij dowolny przycisk zeby wrocic do menu"
+echo
+echo
+echo
+clear
+
+
+}
+
+usun()
+{
+clear
+echo "Jaki plik chcesz usunac? "
+read us
+rm $us
+echo "Plik usuniety!"
+echo
+echo
+echo
+read -rsp $"Nacisnij dowolny przycisk zeby wrocic do menu"
+echo
+echo
+echo
+clear
+}
+
+
+main(){
+clear
+baner
+select wybor in 1.Lista 2.Dodaj 3.Usun 4.Wypisz 5.EXIT
+do
+case $wybor in
+	1.Lista)lista;;
+	2.Dodaj)dodaj;;
+	3.Usun)usun;;
+	4.Wypisz)wyp;;
+	5.EXIT)exit;;
+esac
+done
+}
+wyp()
+{
+clear
+echo "Podaj nazwe pliku do wypisania"
+read z1
+cat $z1
+echo 
+echo
+echo
+read -rsp $"Nacisnij dowolny przycisk zeby wrocic do menu"
+echo
+echo
+echo
+clear
+
+}
+
+check(){
+if [ -f "bazadanych" ]
+  then
+	cd bazadanych
+	continue
+  else
+	mkdir bazadanych
+	cd bazadanych
+	clear
+fi
+
+}
+baner()
+{
+echo "--------------------------------------------"
+echo "--------------------MENU--------------------"
+echo "--------------------------------------------"
+
+}
+#############################################################################
+check
+echo 
+main
